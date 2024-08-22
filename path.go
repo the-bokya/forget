@@ -1,11 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"path"
-
-	"github.com/pkg/errors"
 )
 
 func InitPath() (string, error) {
@@ -20,7 +17,7 @@ func InitPath() (string, error) {
 	_, err := os.Stat(dir)
 	if err != nil {
 		if os.IsNotExist(err) {
-			err = os.MkdirAll(dir, 0664)
+			err = os.MkdirAll(dir, os.FileMode(0755))
 			if err != nil {
 				return "", &cantMakeDirError{dir}
 			}
@@ -28,5 +25,6 @@ func InitPath() (string, error) {
 			return "", err
 		}
 	}
+	dir = path.Join(dir, "forget.db")
 	return dir, nil
 }
