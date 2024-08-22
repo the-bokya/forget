@@ -2,11 +2,13 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strings"
 )
 
 func (app *Application) insertMessage() error {
+	fmt.Printf("\x1b[1m")
 	messageReader := bufio.NewReader(os.Stdin)
 	message, err := messageReader.ReadString('\n')
 	message = strings.TrimSpace(message)
