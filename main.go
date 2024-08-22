@@ -28,5 +28,5 @@ func main() {
 		fmt.Println(err.Error())
 		return
 	}
-	fmt.Println(message)
+	fmt.Printf("\x1b[1m%v\n", message)
 }
