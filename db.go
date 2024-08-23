@@ -7,11 +7,11 @@ import (
 )
 
 func InitDB() (*sql.DB, error) {
-	dbPath, err := InitPath()
+	dbPath, err := initPath()
 	if err != nil {
 		return nil, err
 	}
-	dbDriver, err := sql.Open("sqlite", dbPath)
+	db, err := sql.Open("sqlite", dbPath)
 	if err != nil {
 		return nil, err
 	}
@@ -24,9 +24,9 @@ func InitDB() (*sql.DB, error) {
 		group_name TEXT NOT NULL
 	);
 	`
-	_, err = dbDriver.Exec(initialiseQuery)
+	_, err = db.Exec(initialiseQuery)
 	if err != nil {
 		return nil, err
 	}
-	return dbDriver, nil
+	return db, nil
 }

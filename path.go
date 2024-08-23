@@ -5,7 +5,7 @@ import (
 	"path"
 )
 
-func InitPath() (string, error) {
+func initPath() (string, error) {
 	dir := os.Getenv("FORGET_PATH")
 	if dir == "" {
 		homeDir, err := os.UserHomeDir()
