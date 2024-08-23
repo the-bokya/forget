@@ -17,6 +17,9 @@ type (
 	listError struct {
 		errorMessage string
 	}
+	cantDeleteError struct {
+		errorMessage string
+	}
 )
 
 func (err *cantMakeDirError) Error() string {
@@ -29,6 +32,10 @@ func (err *insertError) Error() string {
 
 func (err *listError) Error() string {
 	return fmt.Sprintf("There was an error listing %v\n", err.errorMessage)
+}
+
+func (err *cantDeleteError) Error() string {
+	return fmt.Sprintf("There was an error deleting %v\n", err.errorMessage)
 }
 
 func displayError(err error) {
