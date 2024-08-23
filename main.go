@@ -53,5 +53,7 @@ func main() {
 		fmt.Println(err.Error())
 		return
 	}
-	fmt.Printf("\x1b[1m%v\n", message)
+	bold()
+	defer unbold()
+	fmt.Println(message)
 }
