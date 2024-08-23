@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 type (
 	cantMakeDirError struct {
@@ -26,4 +29,8 @@ func (err *insertError) Error() string {
 
 func (err *listError) Error() string {
 	return fmt.Sprintf("There was an error listing %v\n", err.errorMessage)
+}
+
+func displayError(err error) {
+	fmt.Fprintf(os.Stderr, "%v", err.Error())
 }

@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"flag"
 	"fmt"
-	"os"
 )
 
 type Application struct {
@@ -17,7 +16,7 @@ func main() {
 	flag.Parse()
 	db, err := InitDB()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%v", err.Error())
+		displayError(err)
 		return
 	}
 	defer db.Close()
@@ -25,7 +24,7 @@ func main() {
 	if *addFlag {
 		err = app.insertMessage()
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "%v", err.Error())
+			displayError(err)
 			return
 		}
 		return
@@ -33,7 +32,7 @@ func main() {
 	if *listFlag {
 		err = app.list()
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "%v", err.Error())
+			displayError(err)
 			return
 		}
 		return
