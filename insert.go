@@ -35,7 +35,8 @@ func (app *Application) insertDB(message string) error {
 
 func insertInput() (string, error) {
 	fmt.Printf("Type away! When you are done, type %q on a new line: \n", endCommand)
-	fmt.Printf("\x1b[1m")
+	bold()
+	defer unbold()
 	reader := bufio.NewReader(os.Stdin)
 	input := make([]string, 0)
 	for {
